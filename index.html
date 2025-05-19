@@ -1,0 +1,48 @@
+import random
+
+def play_game():
+    """
+    This function implements the "Guess the Number" game.  The computer
+    selects a random number between 1 and 100 (inclusive).  The player
+    then tries to guess the number.  The computer provides feedback
+    ("Too high!", "Too low!", "Correct!") after each guess.  The game
+    continues until the player guesses correctly.
+    """
+    # Generate a random number between 1 and 100
+    secret_number = random.randint(1, 100)
+
+    # Initialize the number of guesses
+    guess_count = 0
+
+    print("Welcome to the Guess the Number game!")
+    print("I'm thinking of a number between 1 and 100.")
+
+    # Main game loop
+    while True:
+        try:
+            # Get the player's guess
+            guess = int(input("Enter your guess: "))
+            guess_count += 1  # Increment guess count
+
+            # Check if the guess is valid
+            if guess < 1 or guess > 100:
+                print("Please enter a number between 1 and 100.")
+                continue  # Go back to the beginning of the loop
+
+            # Provide feedback to the player
+            if guess < secret_number:
+                print("Too low!")
+            elif guess > secret_number:
+                print("Too high!")
+            else:
+                print(f"Correct! You guessed the number in {guess_count} guesses.")
+                break  # Exit the loop when the guess is correct
+
+        except ValueError:
+            print("Invalid input. Please enter a *number*.")
+            # No 'continue' needed, the loop will go back to the start anyway
+
+if __name__ == "__main__":
+    play_game()  # Start the game
+
+
